@@ -30,8 +30,8 @@ def load_llm():
 filter_engine = load_backend()
 llm_engine = load_llm()
 
-if filter_engine is None or llm_engine is None:
-    st.warning("⚠️ Please resolve configuration errors to continue (Check your .env API key!).")
+if filter_engine is None or filter_engine.df.empty or llm_engine is None:
+    st.error("⚠️ Failed to load the dataset or LLM API. Please ensure `data/cleaned_zomato.csv` exists and API keys are set.")
     st.stop()
 
 # Sidebar / Main Area Inputs
